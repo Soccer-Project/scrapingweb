@@ -29,7 +29,8 @@ for file in files:
         players = { 
             'Vinicius Junior' : '1c93d8cc-9890-4475-964f-e58beb84f7c0',
             'Neymar' : '59e11799-1710-4b19-a1d2-8e82a7c83d23',
-            'Messi' : 'a38e3f47-a1ee-4a17-b32b-2d732debd6b8'
+            'Messi' : 'a38e3f47-a1ee-4a17-b32b-2d732debd6b8',
+            'Gabriel Barbosa': '74db1bd9-5635-4c76-a7dd-0ea3e0480fb8'
         }
 
         seasons = {
@@ -38,20 +39,13 @@ for file in files:
             '2021' : 'f726c6be-f2c6-47c6-931c-8962afa04860'
         }
 
-            # print(players['Messi'])
-            # print(players[file[:-9]])
-            # print(file[:-9])
-
         payload = json.dumps({
             'player_id': players[file[:-9]],
             'season_id': seasons[file[-8: -4:]],
             'games': games,
             'goals': goals,
             'assists': assists
-        })
-
-        # print(file[:-9] + ' ' + file[-8: -4:])
-        # print(payload)    
+        })  
 
         result = requests.post('http://localhost:5000/season/data', data = payload, headers = {'Content-Type': 'application/json'})
         print(result.text)
